@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //create создать
+    //read прочитать
+    //update редактировать
+    //delete удалить
+    //вокруг этих слов крутиться каждое приложение по фронтенду
+
+    // data
+    const info = {
+      title: 'it-incubator',
+      graduatesCount: 2000,
+      areYouChampion: true,
+      technologies: [
+        {
+          title: 'Front',
+          id: 0
+        },
+        {
+          title: 'Back',
+          id: 1
+        }, 
+        {
+          title: 'DevOps',
+          id: 1
+        }]
+    }
+      // render
+      let pageTitleElement = document.createElement('h1');
+      pageTitleElement.append(info.title);
+      document.body.append(pageTitleElement);
+
+      let graduatesCountElement = document.createElement('input');
+      graduatesCountElement.value = info.graduatesCount;
+      document.body.append(graduatesCountElement);
+
+      let areYouChampionElement = document.createElement('input');
+      areYouChampionElement.type = 'checkbox';
+      areYouChampionElement.checked = info.areYouChampion;
+      document.body.append(areYouChampionElement);
+
+      let listOfTechnologies = document.createElement('select');
+
+      let listOfTechnologiesOptions0 = document.createElement('option');
+      listOfTechnologiesOptions0.value = info.technologies[0].id;
+      listOfTechnologiesOptions0.append(info.technologies[0].title);
+      listOfTechnologies.append(listOfTechnologiesOptions0);
+
+      let listOfTechnologiesOptions1 = document.createElement('option');
+      listOfTechnologiesOptions1.value = info.technologies[1].id;
+      listOfTechnologiesOptions1.append(info.technologies[1].title);
+      listOfTechnologies.append(listOfTechnologiesOptions1);
+
+      let listOfTechnologiesOptions2 = document.createElement('option');
+      listOfTechnologiesOptions2.value = info.technologies[2].id;
+      listOfTechnologiesOptions2.append(info.technologies[2].title);
+      listOfTechnologies.append(listOfTechnologiesOptions2);
+
+      document.body.append(listOfTechnologies);
+  </script>
+</body>
+</html>
