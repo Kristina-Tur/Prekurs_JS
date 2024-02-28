@@ -1,28 +1,63 @@
-const header = {
-  cover: {
-    title: 'Beyonce – Diva',
-    albumСover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png'
-  },
-  tracksList: [
-    {
-      trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
-      title: 'Beyonce – Brak My Soul',
-      audio: './assets/tracks/beyonce.mp3'
+const playlists = [
+  {
+    cover: {
+      title: 'Beyonce – Diva',
+      albumСover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png'
     },
-    {
-      trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
-      title: 'Beyonce – Spirit',
-      audio: './assets/tracks/BeyoncéMine(FeatDrake).mp3'
-    }
-  ]
-}
+    tracksList: [
+      {
+        trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
+        title: 'Beyonce – Brak My Soul',
+        audio: './assets/tracks/beyonce.mp3',
+        isHot: false
+      },
+      {
+        trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
+        title: 'Beyonce – Spirit',
+        audio: './assets/tracks/BeyoncéMine(FeatDrake).mp3',
+        isHot: true
+      }
+    ]
+  },
+  {
+    cover: {
+      title: 'Beyonce – Diva',
+      albumСover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png'
+    },
+    tracksList: [
+      {
+        trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
+        title: 'Beyonce – Brak My Soul',
+        audio: './assets/tracks/beyonce.mp3',
+        isHot: false
+      },
+      {
+        trackCover: './assets/images/ae5dabea04cba4ce60fa41dfaf36eec_large.png',
+        title: 'Beyonce – Spirit',
+        audio: './assets/tracks/BeyoncéMine(FeatDrake).mp3',
+        isHot: true
+      }
+    ]
+  }
+]
 
-renderPlaylist(header)
+renderPlaylists(playlists)
+
+function renderPlaylists(playlistsForRendering) {
+  for (let i = 0; i < playlistsForRendering.length; i++) {
+    const playlist = playlistsForRendering[i];
+    renderPlaylist(playlist)
+  }
+  
+}
 
 function renderPlaylist(playlistForRendering) {
   renderPlaylistHeader(playlistForRendering.cover);
-  renderPlaylistTrack(playlistForRendering.tracksList[0]);
-  renderPlaylistTrack(playlistForRendering.tracksList[1]);
+
+  for (let i = 0; i < playlistForRendering.tracksList.length; i++) {
+    const track = playlistForRendering.tracksList[i];
+    renderPlaylistTrack(track)
+  }
 }
 
 function renderPlaylistHeader(header) {
