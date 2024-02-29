@@ -1,5 +1,7 @@
-export function Counter(count) {
+import { data } from "../../data/data.js";
+
+export function Counter() {
   const counterElement = document.createElement('div');
-  counterElement.append(count);
+  counterElement.append(data.count);
   return counterElement;
 }

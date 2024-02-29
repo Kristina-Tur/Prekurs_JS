@@ -15,17 +15,17 @@ export function subscribe(subscriber) {
 
 export function incrementCounterOnButton () {
   data.count++;
-  callback(data);
+  callback();
 }
 
 export function decrementCounterOnButton () {
   data.count--;
-  callback(data);
+  callback();
 }
 
 function counterStart() {
   setInterval(function () {
   data.count++;
-    callback(data);
+    callback();
 }, 1000);
 }
