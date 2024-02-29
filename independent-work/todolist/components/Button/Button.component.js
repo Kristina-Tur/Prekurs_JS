@@ -1,9 +1,11 @@
+import { addItem } from "../../data/data.js";
+
 export function Button() {
   const buttonElement = document.createElement('button');
   buttonElement.append('+');
-  /* buttonIncElement.addEventListener('click', () => {
-    incrementCounterOnButton()
-  }) */
-  
+  buttonElement.addEventListener('click', () => {
+    addItem()
+  })
+
   return buttonElement;
 }

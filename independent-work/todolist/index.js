@@ -1,4 +1,12 @@
-import { data } from "./data/data.js";
+import { subscribe } from "./data/data.js";
 import { renderTodolist } from "./components/renderTodolist.component.js";
 
-renderTodolist(data)
+refreshUI();
+subscribe(renderTodolist);
+
+function refreshUI() {
+  const containerElement = document.getElementById('container');
+  renderTodolist();
+  
+  return containerElement;
+}

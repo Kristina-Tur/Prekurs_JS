@@ -8,6 +8,8 @@ export function renderTodolist() {
   const todolist = Todolist();
   const button = Button();
 
+  containerElement.innerHTML = '';
+
   containerElement.append(header);
   containerElement.append(todolist);
   containerElement.append(button);
