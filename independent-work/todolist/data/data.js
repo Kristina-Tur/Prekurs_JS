@@ -1,4 +1,4 @@
-export const data = [
+export let data = [
   {
     id: createId(),
     title: 'Learn HTML'
@@ -32,6 +32,11 @@ export function addItem() {
     id: createId(),
     title: '-----'
   }
-  data.push(newItem)
+  data.push(newItem);
   callback()
+}
+
+export function deleteItem(itemId) {
+  data = data.filter((obj) => obj.id !== itemId);
+  callback();
 }
