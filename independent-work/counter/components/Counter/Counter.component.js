@@ -1,5 +1,5 @@
-export function Counter(counter) {
+export function Counter(count) {
   const counterElement = document.createElement('div');
-  counterElement.append(counter);
+  counterElement.append(count);
   return counterElement;
 }

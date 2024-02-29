@@ -1,4 +1,5 @@
-import { data } from "./data/data.js";
+import { data, subscribe } from "./data/data.js";
 import { renderCounter } from "./components/renderCounter.js";
 
-renderCounter(data);
+renderCounter(data)
+subscribe(renderCounter)
