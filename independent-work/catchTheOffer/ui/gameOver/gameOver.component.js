@@ -1,4 +1,4 @@
-import {data, Restart} from "../../data/data.js";
+import {data, restart} from "../../data/data.js";
 
 export function GameOver() {
 
@@ -6,7 +6,7 @@ export function GameOver() {
     const buttonElement = document.createElement('button');
     buttonElement.append('Restart');
     buttonElement.addEventListener('click', () => {
-     Restart();
+     restart();
     })
     if (data.scores.catchesCount === data.catchesCountWin) {
         element.append('You Win!');

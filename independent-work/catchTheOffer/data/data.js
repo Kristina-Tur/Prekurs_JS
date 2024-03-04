@@ -22,6 +22,7 @@ export const data = {
     urlImg: './assets/images/img.png',
     catchesCountWin: 3,
     missesCountLose: 3,
+    isButtonBlocked: false,
     gameStatus: GAME_STATUSES.IN_PROGRESS
 }
 
@@ -75,14 +76,26 @@ function runOffer() {
     }, 1000)
 }
 
-runOffer()
-
-export function Restart(){
+export function restart(){
     data.scores.catchesCount = 0;
     data.scores.missesCount= 0;
     data.coords.x = 0;
     data.coords.y = 0;
     data.gameStatus = GAME_STATUSES.IN_PROGRESS;
-    runOffer();
     callback();
+    data.isButtonBlocked = false
+}
+
+export function start(){
+    if(data.isButtonBlocked){
+        return
+    }
+    data.gameStatus = GAME_STATUSES.IN_PROGRESS;
+    runOffer()
+    data.isButtonBlocked = true
+}
+
+export function pause() {
+    clearInterval(jumpIntervalId);
+    data.isButtonBlocked = false
 }

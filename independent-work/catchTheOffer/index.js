@@ -8,13 +8,16 @@ export function renderUI() {
     container.innerHTML = '';
 
     switch (data.gameStatus) {
+        case GAME_STATUSES.SETTINGS :
+            const settings = Settings();
+            container.append(settings);
         case GAME_STATUSES.IN_PROGRESS :
-            const gameElement = Game();
-            container.append(gameElement);
+            const game = Game();
+            container.append(game);
             break;
         case GAME_STATUSES.FINISH:
-            const gameOverElement = GameOver();
-            container.append(gameOverElement);
+            const gameOver = GameOver();
+            container.append(gameOver);
     }
 }
 
