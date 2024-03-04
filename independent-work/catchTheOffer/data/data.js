@@ -1,3 +1,9 @@
+export const GAME_STATUSES = {
+    SETTINGS: 'settings',
+    IN_PROGRESS: 'in-progress',
+    FINISH: 'finish'
+}
+
 export const data = {
     scores: {
         catchesCount: 0,
@@ -13,7 +19,10 @@ export const data = {
             rows: 3,
         },
     },
-    urlImg: './assets/images/img.png'
+    urlImg: './assets/images/img.png',
+    catchesCountWin: 3,
+    missesCountLose: 3,
+    gameStatus: GAME_STATUSES.IN_PROGRESS
 }
 
 function getRandomCoordinates(n) {
@@ -39,26 +48,41 @@ function jumpOfferToRandomPosition() {
 }
 
 export function hitOffer() {
-    data.scores.catchesCount++;
-    jumpOfferToRandomPosition();
-
     clearInterval(jumpIntervalId);
-    runOffer();
+    data.scores.catchesCount++;
+
+    if(data.scores.catchesCount === data.catchesCountWin){
+        data.gameStatus = GAME_STATUSES.FINISH;
+    }else{
+        jumpOfferToRandomPosition();
+        runOffer();
+    }
 
     callback();
 }
 
-function missOffer(){
+function missOffer() {
     data.scores.missesCount++;
+    jumpOfferToRandomPosition();
+    callback();
 }
 
 let jumpIntervalId;
+
 function runOffer() {
     jumpIntervalId = setInterval(() => {
-        jumpOfferToRandomPosition();
         missOffer();
-        callback();
     }, 1000)
 }
 
 runOffer()
+
+export function Restart(){
+    data.scores.catchesCount = 0;
+    data.scores.missesCount= 0;
+    data.coords.x = 0;
+    data.coords.y = 0;
+    data.gameStatus = GAME_STATUSES.IN_PROGRESS;
+    runOffer();
+    callback();
+}
