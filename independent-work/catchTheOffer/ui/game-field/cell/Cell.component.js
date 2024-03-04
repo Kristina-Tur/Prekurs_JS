@@ -6,5 +6,6 @@ export function Cell(x, y) {
     if (x === data.coords.x && y === data.coords.y) {
         columnElement.append(RenderOffer());
     }
+
     return columnElement;
 }

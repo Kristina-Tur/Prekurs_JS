@@ -29,19 +29,36 @@ export function subscribe(subscriber) {
 function jumpOfferToRandomPosition() {
     let newX = 0;
     let newY = 0;
-    let newCoordsIsEqualOldCoords;
 
     do {
-    data.coords.x = getRandomCoordinates(data.settings.grid.columns);
-    data.coords.y = getRandomCoordinates(data.settings.grid.rows);
-      newCoordsIsEqualOldCoords = data.coords.x === newX && data.coords.y === newY;
-  } while(newCoordsIsEqualOldCoords);
-    callback()
+        newX = getRandomCoordinates(data.settings.grid.columns);
+        newY = getRandomCoordinates(data.settings.grid.rows);
+    } while (data.coords.x === newX && data.coords.y === newY);
+    data.coords.x = newX;
+    data.coords.y = newY;
 }
-function runOffer(){
-    setInterval(() => {
-        jumpOfferToRandomPosition()
+
+export function hitOffer() {
+    data.scores.catchesCount++;
+    jumpOfferToRandomPosition();
+
+    clearInterval(jumpIntervalId);
+    runOffer();
+
+    callback();
+}
+
+function missOffer(){
+    data.scores.missesCount++;
+}
+
+let jumpIntervalId;
+function runOffer() {
+    jumpIntervalId = setInterval(() => {
+        jumpOfferToRandomPosition();
+        missOffer();
+        callback();
     }, 1000)
 }
-runOffer()
 
+runOffer()
