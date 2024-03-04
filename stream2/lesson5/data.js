@@ -45,7 +45,7 @@ runOfferJumpInterval();
 
 export function catchOffer() {
   data.scorePoints++;
-  if (data.scorePoints == data.winPoints) {
+  if (data.scorePoints === data.winPoints) {
     data.win = true;
     clearInterval(OfferJumpIntervalId);
   } else {
