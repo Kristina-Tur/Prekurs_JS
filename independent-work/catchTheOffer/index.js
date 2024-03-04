@@ -1,6 +1,7 @@
 import {Game} from "./ui/game.component.js";
 import {subscribe, GAME_STATUSES, data} from "./data/data.js";
 import {GameOver} from "./ui/gameOver/gameOver.component.js";
+//import {SettingsPanel} from "./ui/settings-panel/SettingsPanel";
 
 
 export function renderUI() {
@@ -9,7 +10,7 @@ export function renderUI() {
 
     switch (data.gameStatus) {
         case GAME_STATUSES.SETTINGS :
-            const settings = Settings();
+            const settings = SettingsPanel();
             container.append(settings);
         case GAME_STATUSES.IN_PROGRESS :
             const game = Game();
