@@ -12,5 +12,7 @@ export function Game() {
   container.append(scoreBlock);
   container.append(gameField);
 
+
+
   return container;
 }
