@@ -14,14 +14,15 @@ export const data = {
         y: 0
     },
     settings: {
-        grid: {
+        gridSize: {
             columns: 3,
             rows: 3,
         },
+        pointsWin: 3,
+        maximumMisses: 4
     },
     urlImg: './assets/images/img.png',
-    catchesCountWin: 3,
-    missesCountLose: 3,
+    urlImg1: './assets/images/catchOffer.png',
     isButtonBlocked: false,
     gameStatus: GAME_STATUSES.IN_PROGRESS
 }
@@ -41,18 +42,19 @@ function jumpOfferToRandomPosition() {
     let newY = 0;
 
     do {
-        newX = getRandomCoordinates(data.settings.grid.columns);
-        newY = getRandomCoordinates(data.settings.grid.rows);
+        newX = getRandomCoordinates(data.settings.gridSize.columns);
+        newY = getRandomCoordinates(data.settings.gridSize.rows);
     } while (data.coords.x === newX && data.coords.y === newY);
     data.coords.x = newX;
     data.coords.y = newY;
 }
 
 export function hitOffer() {
+
     clearInterval(jumpIntervalId);
     data.scores.catchesCount++;
 
-    if(data.scores.catchesCount === data.catchesCountWin){
+    if(data.scores.catchesCount === data.settings.pointsWin){
         data.gameStatus = GAME_STATUSES.FINISH;
     }else{
         jumpOfferToRandomPosition();
@@ -64,7 +66,11 @@ export function hitOffer() {
 
 function missOffer() {
     data.scores.missesCount++;
-    jumpOfferToRandomPosition();
+    if(data.scores.missesCount === data.settings.maximumMisses){
+        data.gameStatus = GAME_STATUSES.FINISH;
+    }else{
+        jumpOfferToRandomPosition();
+    }
     callback();
 }
 
@@ -73,7 +79,7 @@ let jumpIntervalId;
 function runOffer() {
     jumpIntervalId = setInterval(() => {
         missOffer();
-    }, 1000)
+    }, 3000)
 }
 
 export function restart(){
@@ -83,7 +89,8 @@ export function restart(){
     data.coords.y = 0;
     data.gameStatus = GAME_STATUSES.IN_PROGRESS;
     callback();
-    data.isButtonBlocked = false
+    data.isButtonBlocked = false;
+
 }
 
 export function start(){

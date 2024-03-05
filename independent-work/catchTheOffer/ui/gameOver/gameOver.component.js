@@ -4,9 +4,9 @@ import {Lose} from "./Lose/Lose.component.js";
 
 export function GameOver() {
     const container = document.createElement('div');
-    if (data.scores.catchesCount === data.catchesCountWin) {
+    if (data.scores.catchesCount === data.settings.pointsWin) {
         container.append(Win());
-    }else if (data.scores.missesCount > 3){
+    }else if (data.scores.missesCount === data.settings.maximumMisses){
         container.append(Lose());
     }
     return container;
