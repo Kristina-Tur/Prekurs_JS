@@ -23,6 +23,7 @@ export const data = {
     },
     urlImg: './assets/images/img.png',
     urlImg1: './assets/images/catchOffer.png',
+    urlImg2: './assets/images/missOffer.png',
     isButtonBlocked: false,
     gameStatus: GAME_STATUSES.IN_PROGRESS
 }
@@ -79,7 +80,7 @@ let jumpIntervalId;
 function runOffer() {
     jumpIntervalId = setInterval(() => {
         missOffer();
-    }, 3000)
+    }, 1000)
 }
 
 export function restart(){
