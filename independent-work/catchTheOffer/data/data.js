@@ -21,6 +21,8 @@ export const data = {
         pointsWin: 3,
         maximumMisses: 4
     },
+    missedOffer: null,
+    catchOffer: null,
     urlImg: './assets/images/img.png',
     urlImg1: './assets/images/catchOffer.png',
     urlImg2: './assets/images/missOffer.png',
@@ -51,13 +53,17 @@ function jumpOfferToRandomPosition() {
 }
 
 export function hitOffer() {
-
     clearInterval(jumpIntervalId);
     data.scores.catchesCount++;
 
     if(data.scores.catchesCount === data.settings.pointsWin){
         data.gameStatus = GAME_STATUSES.FINISH;
     }else{
+        setCaughtOffer(data.coords.x, data.coords.y);
+        setTimeout((() => {
+            clearCaughtOffer();
+            callback();
+        }), 200);
         jumpOfferToRandomPosition();
         runOffer();
     }
@@ -67,6 +73,11 @@ export function hitOffer() {
 
 function missOffer() {
     data.scores.missesCount++;
+    setMissedOffer(data.coords.x, data.coords.y);
+    setTimeout((() => {
+        clearMissedOffer();
+        callback();
+    }), 200);
     if(data.scores.missesCount === data.settings.maximumMisses){
         data.gameStatus = GAME_STATUSES.FINISH;
     }else{
@@ -80,7 +91,7 @@ let jumpIntervalId;
 function runOffer() {
     jumpIntervalId = setInterval(() => {
         missOffer();
-    }, 1000)
+    }, 3000)
 }
 
 export function restart(){
@@ -89,9 +100,8 @@ export function restart(){
     data.coords.x = 0;
     data.coords.y = 0;
     data.gameStatus = GAME_STATUSES.IN_PROGRESS;
-    callback();
     data.isButtonBlocked = false;
-
+    callback();
 }
 
 export function start(){
@@ -106,4 +116,18 @@ export function start(){
 export function pause() {
     clearInterval(jumpIntervalId);
     data.isButtonBlocked = false
+}
+
+function setCaughtOffer (x, y){
+    data.catchOffer = {x, y}
+}
+function clearCaughtOffer (){
+    data.catchOffer = null;
+}
+function setMissedOffer (x, y){
+    data.missedOffer = {x, y}
+}
+
+function clearMissedOffer (){
+    data.missedOffer = null;
 }

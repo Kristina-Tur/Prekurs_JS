@@ -6,7 +6,7 @@ export function GameOver() {
     const container = document.createElement('div');
     if (data.scores.catchesCount === data.settings.pointsWin) {
         container.append(Win());
-    }else if (data.scores.missesCount === data.settings.maximumMisses){
+    }else if (data.scores.missesCount >= data.settings.maximumMisses+1){
         container.append(Lose());
     }
     return container;
