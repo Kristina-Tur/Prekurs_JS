@@ -1,6 +1,6 @@
-import {data} from "../../data/data.js";
+import {getScores} from "../../data/data.js";
 export function ScoreBlock() {
     const container = document.createElement('div');
-    container.append(`Catch: ${data.scores.catchesCount} Miss: ${data.scores.missesCount}`);
+    container.append(`Catch: ${getScores().catchesCount} Miss: ${getScores().missesCount}`);
     return container;
 }

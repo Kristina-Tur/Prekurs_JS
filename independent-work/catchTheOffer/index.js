@@ -20,6 +20,7 @@ export function renderUI() {
         case GAME_STATUSES.FINISH:
             const gameOver = GameOver();
             container.append(gameOver);
+            break;
     }
 }
 

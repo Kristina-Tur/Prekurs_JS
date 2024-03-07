@@ -1,12 +1,12 @@
-import {data} from "../../data/data.js";
+import {getScores, getSettings} from "../../data/data.js";
 import {Win} from "./win/Win.component.js";
 import {Lose} from "./Lose/Lose.component.js";
 
 export function GameOver() {
     const container = document.createElement('div');
-    if (data.scores.catchesCount === data.settings.pointsWin) {
+    if (getScores().catchesCount === getSettings().pointsWin) {
         container.append(Win());
-    }else if (data.scores.missesCount >= data.settings.maximumMisses+1){
+    }else if (getScores().missesCount >= getSettings().maximumMisses+1){
         container.append(Lose());
     }
     return container;
