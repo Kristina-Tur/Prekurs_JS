@@ -23,9 +23,6 @@ export const data = {
     },
     missedOffer: null,
     catchOffer: null,
-    urlImg: './assets/images/img.png',
-    urlImg1: './assets/images/catchOffer.png',
-    urlImg2: './assets/images/missOffer.png',
     isButtonBlocked: false,
     gameStatus: GAME_STATUSES.IN_PROGRESS
 }
@@ -73,14 +70,14 @@ export function hitOffer() {
 
 function missOffer() {
     data.scores.missesCount++;
-    setMissedOffer(data.coords.x, data.coords.y);
-    setTimeout((() => {
-        clearMissedOffer();
-        callback();
-    }), 200);
     if(data.scores.missesCount === data.settings.maximumMisses){
         data.gameStatus = GAME_STATUSES.FINISH;
     }else{
+        setMissedOffer(data.coords.x, data.coords.y);
+        setTimeout((() => {
+            clearMissedOffer();
+            callback();
+        }), 200);
         jumpOfferToRandomPosition();
     }
     callback();
