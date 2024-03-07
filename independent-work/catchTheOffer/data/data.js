@@ -109,7 +109,7 @@ export function start(){
         return
     }
     data.gameStatus = GAME_STATUSES.IN_PROGRESS;
-    runOffer()
+    runOffer();
     data.isButtonBlocked = true
 }
 
