@@ -16,8 +16,8 @@ const data = {
     players: [{x: 1, y: 1}, {x: 2, y: 2}],
     settings: {
         gridSize: {
-            columns: 5,
-            rows: 5,
+            columns: 3,
+            rows: 3,
         },
         pointsWin: 3,
         maximumMisses: 400
@@ -43,7 +43,7 @@ function jumpGoogleToRandomPosition() {
     do {
         newX = getRandomCoordinates(data.settings.gridSize.columns);
         newY = getRandomCoordinates(data.settings.gridSize.rows);
-    } while (data.coords.x === newX && data.coords.y === newY);
+    } while (data.coords.x === newX && data.coords.y === newY || !isCellOfGridIsFree(newX, newY));
     data.coords.x = newX;
     data.coords.y = newY;
 }
