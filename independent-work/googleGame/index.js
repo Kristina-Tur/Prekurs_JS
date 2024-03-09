@@ -5,7 +5,7 @@ import {
     movePlayer1Up,
     movePlayer1Down,
     movePlayer1Left,
-    movePlayer1Right, getGameStatus
+    movePlayer1Right, getGameStatus, movePlayer2Up, movePlayer2Down, movePlayer2Left, movePlayer2Right
 } from "./data/data.js";
 import {GameOver} from "./ui/gameOver/gameOver.component.js";
 import {SettingsPanel} from "./ui/settings-panel/SettingsPanel.js";
@@ -34,6 +34,7 @@ renderUI();
 subscribe(renderUI);
 
 window.addEventListener('keyup', (e) => {
+    debugger
     switch (e.code) {
         case 'ArrowUp':
             movePlayer1Up();
@@ -46,6 +47,18 @@ window.addEventListener('keyup', (e) => {
             break;
         case 'ArrowRight':
             movePlayer1Right();
+            break;
+        case 'keyW':
+            movePlayer2Up();
+            break;
+        case 'keyS':
+            movePlayer2Down();
+            break;
+        case 'keyA':
+            movePlayer2Left();
+            break;
+        case 'keyD':
+            movePlayer2Right();
             break;
     }
 })

@@ -151,7 +151,21 @@ export function movePlayer1Left() {
 export function movePlayer1Right() {
     movePlayer({x: 1, y: 0}, data.players[0])
 }
+export function movePlayer2Up() {
+    movePlayer({x: 0, y: -1}, data.players[1])
+}
 
+export function movePlayer2Down() {
+    movePlayer({x: 0, y: 1}, data.players[1])
+}
+
+export function movePlayer2Left() {
+    movePlayer({x: -1, y: 0}, data.players[1])
+}
+
+export function movePlayer2Right() {
+    movePlayer({x: 1, y: 0}, data.players[1])
+}
 //selectors/ getter
 
 export function getScores() {
