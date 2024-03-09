@@ -15,7 +15,7 @@ export function renderUI() {
     const container = document.getElementById('container');
     container.innerHTML = '';
 
-    switch (getGameStatus().gameStatus) {
+    switch (getGameStatus()) {
         case GAME_STATUSES.SETTINGS :
             const settings = SettingsPanel();
             container.append(settings);

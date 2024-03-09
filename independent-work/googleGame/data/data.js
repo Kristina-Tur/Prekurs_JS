@@ -103,32 +103,46 @@ export function pause() {
     data.isButtonBlocked = false
 }
 
+function movePlayer(delta, player) {
+    const newX = player.x + delta.x;
+    const newY = player.y + delta.y;
+
+    if (!isNewCoordsInsideGrid(newX, newY)) return false;
+    if (!isCellOfGridIsFree(newX, newY)) return false;
+
+    player.x = newX;
+    player.y = newY;
+
+    listener();
+}
+
+function isNewCoordsInsideGrid(x, y) {
+    return !(x < 0 ||
+        x >= data.settings.gridSize.columns ||
+        y < 0 ||
+        y >= data.settings.gridSize.rows);
+}
+
+function isCellOfGridIsFree(newX, newY) {
+    if (newX === data.players[0].x && newY === data.players[0].y) return false;
+    if (newX === data.players[1].x && newY === data.players[1].y) return false;
+    return true;
+}
+
 export function movePlayer1Up() {
-    if (data.players[0].y > 0) {
-        data.players[0].y--;
-        listener();
-    }
+    movePlayer({x: 0, y: -1}, data.players[0])
 }
 
 export function movePlayer1Down() {
-    if (data.players[0].y < data.settings.gridSize.rows - 1) {
-        data.players[0].y++;
-        listener();
-    }
+    movePlayer({x: 0, y: 1}, data.players[0])
 }
 
 export function movePlayer1Left() {
-    if (data.players[0].x > 0) {
-        data.players[0].x--;
-        listener();
-    }
+    movePlayer({x: -1, y: 0}, data.players[0])
 }
 
 export function movePlayer1Right() {
-    if (data.players[0].x < data.settings.gridSize.columns - 1) {
-        data.players[0].x++;
-        listener();
-    }
+    movePlayer({x: 1, y: 0}, data.players[0])
 }
 
 //selectors/ getter
@@ -171,7 +185,5 @@ export function getSettings() {
 }
 
 export function getGameStatus() {
-    return {
-        gameStatus: data.gameStatus
-    }
+    return data.gameStatus
 }
