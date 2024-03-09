@@ -1,11 +1,6 @@
-import {catchGoogle} from "../../../../data/data.js";
-
 export function RenderGoogle() {
     const imgElement = document.createElement('img');
     imgElement.src = './assets/images/google.png';
-    imgElement.addEventListener('click', () => {
-        catchGoogle()
-    })
     return imgElement;
 }
 export function Player1(){

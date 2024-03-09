@@ -13,7 +13,10 @@ const data = {
         x: 0,
         y: 0
     },
-    players: [{x: 1, y: 1}, {x: 2, y: 2}],
+    players: [
+        {x: 1, y: 1, points: 0},
+        {x: 2, y: 2, points: 0}
+    ],
     settings: {
         gridSize: {
             columns: 3,
@@ -48,12 +51,12 @@ function jumpGoogleToRandomPosition() {
     data.coords.y = newY;
 }
 
-export function catchGoogle() {
-    clearInterval(jumpIntervalId);
-    data.scores.catchesCount++;
+function catchGoogle(player) {
+    player.points++;
 
-    if (data.scores.catchesCount === data.settings.pointsWin) {
+    if (player.points === data.settings.pointsWin) {
         data.gameStatus = GAME_STATUSES.FINISH;
+        clearInterval(jumpIntervalId);
     } else {
         jumpGoogleToRandomPosition();
         runGoogle();
@@ -113,6 +116,10 @@ function movePlayer(delta, player) {
     player.x = newX;
     player.y = newY;
 
+    if(player.x === data.coords.x && player.y === data.coords.y){
+       catchGoogle(player)
+    }
+
     listener();
 }
 
@@ -149,8 +156,8 @@ export function movePlayer1Right() {
 
 export function getScores() {
     return {
-        catchesCount: data.scores.catchesCount,
-        missesCount: data.scores.missesCount
+        players1: data.players[0],
+        players2: data.players[1]
     }
 }
 
